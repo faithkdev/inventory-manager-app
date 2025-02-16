@@ -41,8 +41,11 @@
   "author": "faith",
   "license": "MIT",
   "dependencies": {
+    "@chakra-ui/react": "^3.8.0",
     "electron-squirrel-startup": "^1.0.1",
+    "pouchdb-browser": "^9.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "use-pouchdb": "^2.0.2"
   }
 }
