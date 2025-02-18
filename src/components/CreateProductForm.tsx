@@ -11,10 +11,13 @@ export const CreateProductForm = () => {
     const [previewUrl, setPreviewUrl] = useState('');
 
     const onFileUpload = async(details: FileAcceptDetails) => {
-      console.log('YES');
+      console.log({details});
       const file = details.files[0];
+      console.log({file});
+      if (!['image/png', 'image/jpg'].includes(file?.type)) {
+        return;
+      }
       const test = URL.createObjectURL(file);
-      console.log({test});
       setPreviewUrl(test);
       // const doc = {
       //   _id: crypto.randomUUID(),
@@ -32,7 +35,7 @@ export const CreateProductForm = () => {
 
     return(
       <>
-        {!previewUrl && <FileUploadRoot accept={['image/png', 'image/jpg']} maxW="x1" alignItems="stretch" maxFiles={1} onFileAccept={(details: FileAcceptDetails) => onFileUpload(details)}>
+        {!previewUrl && <FileUploadRoot allowDrop accept={['image/png', 'image/jpg']} maxW="x1" alignItems="stretch" maxFiles={1} onFileAccept={(details: FileAcceptDetails) => onFileUpload(details)}>
           <FileUploadDropzone 
           >
             Upload an image
