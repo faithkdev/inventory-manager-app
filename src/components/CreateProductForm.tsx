@@ -1,8 +1,6 @@
 import { Button, FileUploadDropzone, Image } from '@chakra-ui/react';
 import {
-    FileUploadList,
     FileUploadRoot,
-    FileUploadTrigger,
   } from './ui/file-upload';
 import { usePouch } from 'use-pouchdb';
 import { FileAcceptDetails } from '@chakra-ui/react/dist/types/components/file-upload/namespace';
@@ -13,9 +11,8 @@ export const CreateProductForm = () => {
     const [previewUrl, setPreviewUrl] = useState('');
 
     const onFileUpload = async(details: FileAcceptDetails) => {
-      console.log({details});
+      console.log('YES');
       const file = details.files[0];
-      const blob = new Blob([file], {type: file.type});
       const test = URL.createObjectURL(file);
       console.log({test});
       setPreviewUrl(test);
@@ -35,14 +32,13 @@ export const CreateProductForm = () => {
 
     return(
       <>
-        <FileUploadRoot maxW="x1" alignItems="stretch" maxFiles={1} onFileAccept={(details: FileAcceptDetails) => onFileUpload(details)}>
+        {!previewUrl && <FileUploadRoot accept={['image/png', 'image/jpg']} maxW="x1" alignItems="stretch" maxFiles={1} onFileAccept={(details: FileAcceptDetails) => onFileUpload(details)}>
           <FileUploadDropzone 
           >
             Upload an image
             .png, ,jpg only
           </FileUploadDropzone>
-        <FileUploadList />
-      </FileUploadRoot>
+      </FileUploadRoot>}
       {previewUrl && <Image src={previewUrl} />}
       </>
     );
