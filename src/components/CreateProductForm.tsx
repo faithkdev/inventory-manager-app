@@ -17,7 +17,7 @@ export const CreateProductForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller 
           render={({ field: { onChange }}) => (
-            <PhotoUpload {...register('image')} onChange={onChange} />
+            <PhotoUpload onChange={onChange} />
           )}
           name='image'
           control={control}
