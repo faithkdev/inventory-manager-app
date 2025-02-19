@@ -6,21 +6,20 @@ import {
   } from './ui/file-upload';
 
 type Props = {
-    onFileUpload: (file: File) => void;
+    onChange: Function;
 };
 
-export const PhotoUpload = ({ onFileUpload }: Props) => {
+export const PhotoUpload = ({ onChange }: Props) => {
     const [previewUrl, setPreviewUrl] = useState('');
 
     const onUpload = (details: FileAcceptDetails) => {
         const file = details.files[0];
-        console.log({ file });
         if (!['image/png', 'image/jpg'].includes(file?.type)) {
             return;
         }
         const test = URL.createObjectURL(file);
         setPreviewUrl(test);
-        onFileUpload(file);
+        onChange(file);
         // const doc = {
         //   _id: crypto.randomUUID(),
         //   name: file.name,
