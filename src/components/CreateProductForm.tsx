@@ -1,4 +1,4 @@
-import { Button, FileUploadDropzone, Image } from '@chakra-ui/react';
+import { Button, FileUploadDropzone, Image, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import { PhotoUpload } from './PhotoUpload';
 import { usePouch } from 'use-pouchdb';
@@ -21,7 +21,11 @@ export const CreateProductForm = () => {
           )}
           name='image'
           control={control}
+          rules={{ required: true }}
         />
+        <Input placeholder="SKU #" {...register('sku', { required: true})} />
+        <Input placeholder="Product name" {...register('name', { required : true})} />
+        <Input placeholder="Description" {...register('description')} />
         <Button type="submit">Submit</Button>
       </form>
     );
